@@ -12,8 +12,19 @@
       padding: 40px;
     }
     h1 {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       color: #90caf9;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 30px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #1c1c1c;
+      color: #f1f1f1;
     }
     .kapilar {
       display: flex;
@@ -49,6 +60,7 @@
 <body>
 
   <h1>AYNIFN – Frekans Haritası</h1>
+  <input type="text" id="aramaKutusu" placeholder="Anahtar kelimeyle ara...">
   <div class="kapilar" id="kapiAlani">
     <p>Yükleniyor...</p>
   </div>
@@ -68,6 +80,17 @@
             <small>Enerji: ${kapi.enerji}</small>
           `;
           container.appendChild(div);
+        });
+
+        // Arama kutusu filtreleme
+        document.getElementById('aramaKutusu').addEventListener('input', function () {
+          const arama = this.value.toLowerCase();
+          const kapilar = document.querySelectorAll('.kapi');
+
+          kapilar.forEach(kapi => {
+            const yazi = kapi.textContent.toLowerCase();
+            kapi.style.display = yazi.includes(arama) ? 'block' : 'none';
+          });
         });
       })
       .catch(error => {
