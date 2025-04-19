@@ -1,0 +1,32 @@
+[
+  {
+    "url": "ruhyolcusu.html",
+    "isim": "Ruh Yolcusu",
+    "enerji": "Yolculuk ve Arayış"
+  },
+  {
+    "url": "sonsuzalan.html",
+    "isim": "Sonsuz Alan",
+    "enerji": "Zihinsizlik ve Tefekkür"
+  },
+  {
+    "url": "sessizbilgelik.html",
+    "isim": "Sessiz Bilgelik",
+    "enerji": "Sükûnet ve Derinlik"
+  },
+  {
+    "url": "ozisik.html",
+    "isim": "Öz Işık",
+    "enerji": "İçsel Aydınlanma"
+  },
+  {
+    "url": "yansizisik.html",
+    "isim": "Yansız Işık",
+    "enerji": "Tarafsızlık ve Saf Tanıklık"
+  },
+  {
+    "url": "icyanki.html",
+    "isim": "İç Yankı",
+    "enerji": "Kalbin Fısıltısı"
+  }
+]
