@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Frekans Sayfanı Oluştur</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #f1f1f1;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      padding: 40px;
+    }
+    input, textarea {
+      width: 90%;
+      max-width: 500px;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+    button {
+      padding: 12px 30px;
+      background-color: #4fc3f7;
+      border: none;
+      font-size: 16px;
+      color: #000;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    pre {
+      background-color: #1a1a1a;
+      color: #0ff;
+      padding: 20px;
+      text-align: left;
+      overflow-x: auto;
+      border-radius: 10px;
+      margin-top: 30px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Frekans Sayfanı Oluştur</h1>
+  <p>Niyetini yaz, kendi kapını yarat.</p>
+
+  <input type="text" id="sayfaAdi" placeholder="Sayfa adı (örnek: ozisik)">
+  <input type="text" id="baslik" placeholder="Sayfa başlığı (örnek: Öz Işık)">
+  <textarea id="niyet" placeholder="Niyet cümlesi..."></textarea>
+  <input type="text" id="renk" placeholder="Frekans rengi (örnek: Altın Sarısı)">
+  <input type="text" id="enerji" placeholder="Enerji tipi (örnek: Öz’den gelen aydınlanma)">
+  <input type="text" id="uyum" placeholder="Uyum oranı (örnek: %97)">
+  <button onclick="olustur()">HTML Kodumu Oluştur</button>
+
+  <div id="sonuc"></div>
+
+  <script>
+    function olustur() {
+      const sayfaAdi = document.getElementById("sayfaAdi").value;
+      const baslik = document.getElementById("baslik").value;
+      const niyet = document.getElementById("niyet").value;
+      const renk = document.getElementById("renk").value;
+      const enerji = document.getElementById("enerji").value;
+      const uyum = document.getElementById("uyum").value;
+
+      const kod = `
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>${baslik}.aynifn.com</title>
+  <style>
+    body { background-color: #111; color: #eee; font-family: Georgia, serif; text-align: center; padding: 50px; }
+    .kapsayici { background-color: #1b1b1b; padding: 30px; border-left: 6px solid #4fc3f7; border-radius: 12px; max-width: 600px; margin: auto; }
+    .frekans { background-color: #262626; padding: 20px; border-radius: 10px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="kapsayici">
+    <h1>${baslik}.aynifn.com</h1>
+    <p class="niyet">"${niyet}"</p>
+    <div class="frekans">
+      <h2>Frekans Profili</h2>
+      <p><strong>Renk:</strong> ${renk}</p>
+      <p><strong>Enerji:</strong> ${enerji}</p>
+      <p><strong>Uyum:</strong> ${uyum}</p>
+    </div>
+  </div>
+</body>
+</html>`;
+
+      document.getElementById("sonuc").innerHTML = `<h3>HTML Kodun Hazır:</h3><pre>${kod}</pre>`;
+    }
+  </script>
+
+</body>
+</html>
