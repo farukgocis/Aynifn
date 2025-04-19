@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Frekans Sayfası Oluştur</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #f1f1f1;
+      font-family: Georgia, serif;
+      text-align: center;
+      padding: 40px;
+    }
+    input, textarea {
+      width: 90%;
+      max-width: 500px;
+      padding: 10px;
+      margin: 10px auto;
+      display: block;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background-color: #4fc3f7;
+      color: #000;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    pre {
+      text-align: left;
+      background-color: #222;
+      padding: 20px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin-top: 30px;
+      border-left: 4px solid #4fc3f7;
+    }
+  </style>  <!-- Firebase SDK -->  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCEuJFoP2cuVLHS3fza7TkwrcrVcN9dPQ4",
+      authDomain: "aynifn.firebaseapp.com",
+      projectId: "aynifn",
+      storageBucket: "aynifn.firebasestorage.app",
+      messagingSenderId: "475005291931",
+      appId: "1:475005291931:web:c6c0a0a1751cc9d24d653e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.olustur = async function () {
+      const sayfa = document.getElementById("sayfaAdi").value;
+      const baslik = document.getElementById("baslik").value;
+      const niyet = document.getElementById("niyet").value;
+      const renk = document.getElementById("renk").value;
+      const enerji = document.getElementById("enerji").value;
+      const uyum = document.getElementById("uyum").value;
+
+      const html = `<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>${baslik}</title>
+  <style>
+    body { background-color: #111; color: #f1f1f1; font-family: Georgia, serif; text-align: center; padding: 40px; }
+    .kutu { background-color: #222; padding: 30px; border: 2px solid ${renk}; border-radius: 10px; max-width: 600px; margin: auto; }
+    h1 { color: ${renk}; }
+  </style></head>
+<body>
+  <h1>${baslik}</h1>
+  <p><em>\"${niyet}\"</em></p>
+  <div class="kutu">
+    <h2>Frekans Profili</h2>
+    <p><strong>Renk:</strong> ${renk}</p>
+    <p><strong>Enerji:</strong> ${enerji}</p>
+    <p><strong>Uyum:</strong> ${uyum}</p>
+  </div>
+</body>
+</html>`;document.getElementById("sonuc").innerText = html;
+
+  try {
+    await addDoc(collection(db, "kapilar"), {
+      sayfa, baslik, niyet, renk, enerji, uyum, html
+    });
+    alert("Firebase'e kaydedildi!");
+  } catch (e) {
+    console.error("Firebase kayıt hatası:", e);
+  }
+};
+
+  </script>
+</head>
+<body>  <h1>Frekans Sayfanı Oluştur</h1>
+  <p>Niyetini yaz, kendi kapını yarat.</p>  <input id="sayfaAdi" placeholder="Sayfa adı (örnek: ozisik)">
+  <input id="baslik" placeholder="Sayfa başlığı (örnek: Öz Işık)">
+  <textarea id="niyet" placeholder="Niyet cümlesi..."></textarea>
+  <input id="renk" placeholder="Frekans rengi (örnek: Altın Sarısı)">
+  <input id="enerji" placeholder="Enerji tipi (örnek: İçsel Aydınlanma)">
+  <input id="uyum" placeholder="Uyum oranı (örnek: %95)"><button onclick="olustur()">HTML Kodumu Oluştur</button>
+
+  <pre id="sonuc"></pre></body>
+</html>
