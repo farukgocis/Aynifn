@@ -6,98 +6,61 @@
   <style>
     body {
       background-color: #111;
-      color: #f1f1f1;
+      color: #aef;
       font-family: Georgia, serif;
       text-align: center;
       padding: 40px;
     }
-    h1 {
-      margin-bottom: 20px;
-      color: #90caf9;
-    }
-    input {
-      padding: 10px;
-      font-size: 16px;
-      width: 80%;
-      max-width: 400px;
-      margin-bottom: 30px;
-      border-radius: 5px;
-      border: 1px solid #333;
-      background-color: #1c1c1c;
-      color: #f1f1f1;
-    }
     .kapilar {
+      margin-top: 30px;
       display: flex;
       flex-direction: column;
       gap: 20px;
-      max-width: 600px;
-      margin: auto;
+      align-items: center;
     }
     .kapi {
+      background-color: #222;
       padding: 20px;
       border-radius: 10px;
-      background-color: #1a1a1a;
-      border-left: 6px solid #4fc3f7;
-      text-align: left;
-      transition: 0.3s ease;
-    }
-    .kapi:hover {
-      background-color: #222;
+      width: 80%;
+      max-width: 400px;
+      box-shadow: 0 0 10px #00ffff44;
     }
     .kapi a {
+      color: #00dfff;
       font-size: 20px;
-      color: #4fc3f7;
       text-decoration: none;
-      font-weight: bold;
     }
-    .kapi small {
-      display: block;
-      color: #aaa;
-      margin-top: 4px;
+    .kapi p {
+      color: #ccc;
+      font-size: 14px;
+      margin-top: 8px;
     }
   </style>
 </head>
 <body>
-
   <h1>AYNIFN – Frekans Haritası</h1>
-  <input type="text" id="aramaKutusu" placeholder="Anahtar kelimeyle ara...">
-  <div class="kapilar" id="kapiAlani">
-    <p>Yükleniyor...</p>
-  </div>
+  <div class="kapilar" id="kapilar"></div>
 
   <script>
-    fetch('kapilar.json')
+    fetch("kapilar.json")
       .then(response => response.json())
       .then(data => {
-        const container = document.getElementById('kapiAlani');
-        container.innerHTML = "";
-
+        const container = document.getElementById("kapilar");
         data.forEach(kapi => {
-          const div = document.createElement('div');
-          div.className = 'kapi';
+          const div = document.createElement("div");
+          div.className = "kapi";
           div.innerHTML = `
-            <a href="${kapi.url}">${kapi.isim}</a>
-            <small>Enerji: ${kapi.enerji}</small>
+            <a href="${kapi.dosya}" target="_blank">${kapi.baslik}</a>
+            <p>Enerji: ${kapi.enerji}</p>
           `;
           container.appendChild(div);
         });
-
-        // Arama kutusu filtreleme
-        document.getElementById('aramaKutusu').addEventListener('input', function () {
-          const arama = this.value.toLowerCase();
-          const kapilar = document.querySelectorAll('.kapi');
-
-          kapilar.forEach(kapi => {
-            const yazi = kapi.textContent.toLowerCase();
-            kapi.style.display = yazi.includes(arama) ? 'block' : 'none';
-          });
-        });
       })
       .catch(error => {
-        document.getElementById('kapiAlani').innerHTML = "<p>Kapılar yüklenemedi.</p>";
-        console.error("JSON okunamadı:", error);
+        document.getElementById("kapilar").innerHTML = "<p>Kapılar yüklenemedi.</p>";
+        console.error("Hata:", error);
       });
   </script>
-
 </body>
 </html>
