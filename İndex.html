@@ -2,51 +2,78 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>sessizbilgelik.aynifn.com</title>
+  <title>aynifn.com – Frekans Portalı</title>
   <style>
     body {
-      background-color: #1a1a1a;
+      background-color: #0f0f0f;
       color: #f2f2f2;
       font-family: 'Georgia', serif;
       text-align: center;
-      padding: 40px;
-    }
-    .kart {
-      background-color: #2a2a2a;
-      border-radius: 10px;
-      padding: 30px;
-      max-width: 600px;
-      margin: auto;
+      padding: 50px;
     }
     h1 {
-      font-size: 32px;
-      color: #c084fc;
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: #66d9ff;
     }
-    .niyet {
-      font-style: italic;
-      margin: 20px 0;
+    .kapsayici {
+      background-color: #1b1b1b;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
     }
-    .frekans {
-      background-color: #3a3a3a;
-      border-radius: 8px;
-      padding: 20px;
-      margin-top: 20px;
+    input {
+      width: 80%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .alt {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <div class="kart">
-    <h1>sessizbilgelik.aynifn.com</h1>
-    <p class="niyet">“Bu alan, sadece durabilenlerin duyacağı bir frekansta yayın yapar. Yazdıklarım kalabalığa değil, İç'e seslenir.”</p>
-
-    <div class="frekans">
-      <h2>Frekans Profili</h2>
-      <p><strong>Renk:</strong> Mor</p>
-      <p><strong>Enerji:</strong> Yin – Sükûnet ve Derinlik</p>
-      <p><strong>Uyum:</strong> %92</p>
-    </div>
+  <div class="kapsayici">
+    <h1>AYNIFN • Frekans Portalı</h1>
+    <p>Niyetini yaz ve seni çağıran frekansa yönlendirilelim.</p>
+    
+    <input type="text" id="niyetInput" placeholder="Niyetini buraya yaz...">
+    <br>
+    <button onclick="yönlendir()">Kapımı Bul</button>
+    
+    <p class="alt">Tüm frekanslar tek bir hakikat için titreşir.</p>
   </div>
+
+  <script>
+    function yönlendir() {
+      const niyet = document.getElementById("niyetInput").value.toLowerCase();
+      
+      if (niyet.includes("yol") || niyet.includes("arayış")) {
+        window.location.href = "ruhyolcusu.html";
+      } else if (niyet.includes("sonsuz") || niyet.includes("özgür")) {
+        window.location.href = "sonsuzalan.html";
+      } else if (niyet.includes("sessiz") || niyet.includes("iç")) {
+        window.location.href = "sessizbilgelik.html";
+      } else {
+        alert("Bu niyet için henüz bir kapı oluşturulmadı. Yakında senin için de açılacak...");
+      }
+    }
+  </script>
 </body>
 </html>
-   
-  
