@@ -1,32 +1,17 @@
 [
   {
-    "url": "ruhyolcusu.html",
-    "isim": "Ruh Yolcusu",
+    "baslik": "Ruh Yolcusu",
+    "dosya": "ruhyolcusu.html",
     "enerji": "Yolculuk ve Arayış"
   },
   {
-    "url": "sonsuzalan.html",
-    "isim": "Sonsuz Alan",
+    "baslik": "Sonsuz Alan",
+    "dosya": "sonsuzalan.html",
     "enerji": "Zihinsizlik ve Tefekkür"
   },
   {
-    "url": "sessizbilgelik.html",
-    "isim": "Sessiz Bilgelik",
+    "baslik": "Sessiz Bilgelik",
+    "dosya": "sessizbilgelik.html",
     "enerji": "Sükûnet ve Derinlik"
-  },
-  {
-    "url": "ozisik.html",
-    "isim": "Öz Işık",
-    "enerji": "İçsel Aydınlanma"
-  },
-  {
-    "url": "yansizisik.html",
-    "isim": "Yansız Işık",
-    "enerji": "Tarafsızlık ve Saf Tanıklık"
-  },
-  {
-    "url": "icyanki.html",
-    "isim": "İç Yankı",
-    "enerji": "Kalbin Fısıltısı"
   }
 ]
