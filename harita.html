@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>AYNIFN Frekans Haritası</title>
+  <title>AYNIFN – Frekans Haritası</title>
   <style>
     body {
       background-color: #111;
@@ -28,6 +28,10 @@
       background-color: #1a1a1a;
       border-left: 6px solid #4fc3f7;
       text-align: left;
+      transition: 0.3s ease;
+    }
+    .kapi:hover {
+      background-color: #222;
     }
     .kapi a {
       font-size: 20px;
@@ -45,33 +49,32 @@
 <body>
 
   <h1>AYNIFN – Frekans Haritası</h1>
-
-  <div class="kapilar">
-    <div class="kapi">
-      <a href="ruhyolcusu.html">Ruh Yolcusu</a>
-      <small>Enerji: Yolculuk ve Arayış</small>
-    </div>
-    <div class="kapi">
-      <a href="sonsuzalan.html">Sonsuz Alan</a>
-      <small>Enerji: Sınırsızlık ve Tefekkür</small>
-    </div>
-    <div class="kapi">
-      <a href="sessizbilgelik.html">Sessiz Bilgelik</a>
-      <small>Enerji: Sükûnet ve Derinlik</small>
-    </div>
-    <div class="kapi">
-      <a href="ozisik.html">Öz Işık</a>
-      <small>Enerji: İçsel Aydınlanma</small>
-    </div>
-    <div class="kapi">
-      <a href="yansizisik.html">Yansız Işık</a>
-      <small>Enerji: Tarafsızlık ve Saf Tanıklık</small>
-    </div>
-    <div class="kapi">
-      <a href="icyanki.html">İç Yankı</a>
-      <small>Enerji: Kalbin Fısıltısı</small>
-    </div>
+  <div class="kapilar" id="kapiAlani">
+    <p>Yükleniyor...</p>
   </div>
+
+  <script>
+    fetch('kapilar.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('kapiAlani');
+        container.innerHTML = "";
+
+        data.forEach(kapi => {
+          const div = document.createElement('div');
+          div.className = 'kapi';
+          div.innerHTML = `
+            <a href="${kapi.url}">${kapi.isim}</a>
+            <small>Enerji: ${kapi.enerji}</small>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(error => {
+        document.getElementById('kapiAlani').innerHTML = "<p>Kapılar yüklenemedi.</p>";
+        console.error("JSON okunamadı:", error);
+      });
+  </script>
 
 </body>
 </html>
