@@ -1,20 +1,81 @@
-<script>
-  fetch("kapilar.json")
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById("kapilar");
-      data.forEach(kapi => {
-        const div = document.createElement("div");
-        div.className = "kapi";
-        div.innerHTML = `
-          <a href="${kapi.id}.html" target="_blank">${kapi.isim}</a>
-          <p>Enerji: ${kapi.enerji}</p>
-        `;
-        container.appendChild(div);
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>AYNIFN – Frekans Haritası</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #aef;
+      font-family: Georgia, serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      margin-bottom: 30px;
+      color: #7ec8e3;
+    }
+    .kapilar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .kapi {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-left: 6px solid #4fc3f7;
+      border-radius: 10px;
+      text-align: left;
+      transition: 0.3s ease;
+    }
+    .kapi:hover {
+      background-color: #282828;
+    }
+    .kapi a {
+      font-size: 20px;
+      color: #4fc3f7;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .kapi p {
+      margin-top: 5px;
+      color: #ccc;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AYNIFN – Frekans Haritası</h1>
+
+  <div class="kapilar" id="kapilar">
+    <p>Yükleniyor...</p>
+  </div>
+
+  <script>
+    fetch("kapilar.json")
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("kapilar");
+        container.innerHTML = "";
+
+        data.forEach(kapi => {
+          const div = document.createElement("div");
+          div.className = "kapi";
+          div.innerHTML = `
+            <a href="${kapi.id}.html" target="_blank">${kapi.isim}</a>
+            <p>Enerji: ${kapi.enerji}</p>
+          `;
+          container.appendChild(div);
+        });
+      })
+      .catch(error => {
+        document.getElementById("kapilar").innerHTML = "<p>Kapılar yüklenemedi.</p>";
+        console.error("Hata:", error);
       });
-    })
-    .catch(error => {
-      document.getElementById("kapilar").innerHTML = "<p>Kapılar yüklenemedi.</p>";
-      console.error("Hata:", error);
-    });
-</script>
+  </script>
+
+</body>
+</html>
